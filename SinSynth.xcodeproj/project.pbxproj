@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		304FE91412C2B3C600DCE7DF /* AUPlugInDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304FE91212C2B3C600DCE7DF /* AUPlugInDispatch.cpp */; };
 		304FE91512C2B3C600DCE7DF /* AUPlugInDispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 304FE91312C2B3C600DCE7DF /* AUPlugInDispatch.h */; };
-		4CC3054A0BD6DDC3008E97BD /* SinSynth.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC305490BD6DDC3008E97BD /* SinSynth.h */; };
 		4CC305640BD6DEBC008E97BD /* AUBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 929E1BF8066E29DE00218B60 /* AUBase.h */; };
 		4CC305660BD6DEBC008E97BD /* AUInputElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 929E1BFC066E29DE00218B60 /* AUInputElement.h */; };
 		4CC305670BD6DEBC008E97BD /* AUOutputElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 929E1BFE066E29DE00218B60 /* AUOutputElement.h */; };
@@ -32,7 +31,6 @@
 		4CC305780BD6DEBC008E97BD /* CAAUMIDIMapManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A919E394088DC5BB008B8742 /* CAAUMIDIMapManager.h */; };
 		4CC305790BD6DEBC008E97BD /* SinSynthVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = A9223CD508A032F100341607 /* SinSynthVersion.h */; };
 		4CC3057A0BD6DEBC008E97BD /* SinSynth_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A9223CDA08A032FD00341607 /* SinSynth_Prefix.pch */; };
-		4CC3057B0BD6DEBC008E97BD /* SinSynth.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC305490BD6DDC3008E97BD /* SinSynth.h */; };
 		4CC3057E0BD6DEBC008E97BD /* AUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929E1BF7066E29DE00218B60 /* AUBase.cpp */; };
 		4CC305800BD6DEBC008E97BD /* AUInputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929E1BFB066E29DE00218B60 /* AUInputElement.cpp */; };
 		4CC305810BD6DEBC008E97BD /* AUOutputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929E1BFD066E29DE00218B60 /* AUOutputElement.cpp */; };
@@ -114,7 +112,6 @@
 		304FE91212C2B3C600DCE7DF /* AUPlugInDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUPlugInDispatch.cpp; sourceTree = "<group>"; };
 		304FE91312C2B3C600DCE7DF /* AUPlugInDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUPlugInDispatch.h; sourceTree = "<group>"; };
 		4CC305200BD6D936008E97BD /* SinSynthWithMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SinSynthWithMidi.cpp; sourceTree = "<group>"; };
-		4CC305490BD6DDC3008E97BD /* SinSynth.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SinSynth.h; sourceTree = "<group>"; };
 		4CC3055E0BD6DE8F008E97BD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		4CC3059D0BD6DEBC008E97BD /* SinSynthWithMidi.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SinSynthWithMidi.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC305AA0BD6DF38008E97BD /* SinSynthWithMidi.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.exports; path = SinSynthWithMidi.exp; sourceTree = "<group>"; };
@@ -165,7 +162,6 @@
 		A919E393088DC5BB008B8742 /* CAAUMIDIMapManager.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAAUMIDIMapManager.cpp; sourceTree = "<group>"; };
 		A919E394088DC5BB008B8742 /* CAAUMIDIMapManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAAUMIDIMapManager.h; sourceTree = "<group>"; };
 		A919E53A088DCA5A008B8742 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
-		A9223CD208A032F100341607 /* SinSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SinSynth.cpp; sourceTree = SOURCE_ROOT; };
 		A9223CD308A032F100341607 /* SinSynth.exp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.exports; path = SinSynth.exp; sourceTree = SOURCE_ROOT; };
 		A9223CD508A032F100341607 /* SinSynthVersion.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SinSynthVersion.h; sourceTree = SOURCE_ROOT; };
 		A9223CDA08A032FD00341607 /* SinSynth_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SinSynth_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -234,8 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				A9223CDA08A032FD00341607 /* SinSynth_Prefix.pch */,
-				4CC305490BD6DDC3008E97BD /* SinSynth.h */,
-				A9223CD208A032F100341607 /* SinSynth.cpp */,
 				4CC305200BD6D936008E97BD /* SinSynthWithMidi.cpp */,
 				A9223CD308A032F100341607 /* SinSynth.exp */,
 				4CC305AA0BD6DF38008E97BD /* SinSynthWithMidi.exp */,
@@ -378,7 +372,6 @@
 				4CC305780BD6DEBC008E97BD /* CAAUMIDIMapManager.h in Headers */,
 				4CC305790BD6DEBC008E97BD /* SinSynthVersion.h in Headers */,
 				4CC3057A0BD6DEBC008E97BD /* SinSynth_Prefix.pch in Headers */,
-				4CC3057B0BD6DEBC008E97BD /* SinSynth.h in Headers */,
 				A90305540D9B38B30041311E /* AUBaseHelper.h in Headers */,
 				B8FCCBD317DE554A00040F82 /* AUPlugInDispatch.h in Headers */,
 				F77C7D960E254E4E00EFE153 /* CABufferList.h in Headers */,
@@ -411,7 +404,6 @@
 				A919E398088DC5BB008B8742 /* CAAUMIDIMapManager.h in Headers */,
 				A9223CD908A032F100341607 /* SinSynthVersion.h in Headers */,
 				A9223CDB08A032FD00341607 /* SinSynth_Prefix.pch in Headers */,
-				4CC3054A0BD6DDC3008E97BD /* SinSynth.h in Headers */,
 				A90305520D9B38B30041311E /* AUBaseHelper.h in Headers */,
 				F77C7D920E254E2F00EFE153 /* CABufferList.h in Headers */,
 				593357D8107BBE9200693A4E /* AUMIDIDefs.h in Headers */,

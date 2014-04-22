@@ -52,7 +52,8 @@
 	To build a version of the SinSynth with this functionality, activate the "SinSynth with MIDI Output" target in Xcode.
 */
 
-#include "SinSynth.h"
+#include "AUInstrumentBase.h"
+#include "SinSynthVersion.h"
 #include <CoreMIDI/CoreMIDI.h>
 #include <vector>
 
