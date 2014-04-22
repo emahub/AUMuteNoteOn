@@ -6,15 +6,15 @@
 	<array>
 		<dict>
 			<key>description</key>
-			<string>SinSynthWithMIDI AudioUnit</string>
+			<string>Mute Note On MIDI Signal</string>
 			<key>factoryFunction</key>
 			<string>SinSynthWithMidiFactory</string>
 			<key>manufacturer</key>
 			<string>EMAH</string>
 			<key>name</key>
-			<string>Emahub: NoteOn Mute</string>
+			<string>Emahub: MuteNoteOn</string>
 			<key>subtype</key>
-			<string>nomt</string>
+			<string>mtno</string>
 			<key>type</key>
 			<string>aumi</string>
 			<key>sandboxSafe</key>

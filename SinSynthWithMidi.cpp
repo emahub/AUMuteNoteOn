@@ -2,6 +2,22 @@
 #include "SinSynthVersion.h"
 #include <CoreMIDI/CoreMIDI.h>
 #include <vector>
+#include <cstring>
+
+#ifdef DEBUG
+#include <fstream>
+#include <ctime>
+#endif
+
+// two debug macros (one for the "base" class, one for "kernel") defined
+#ifdef DEBUG
+#define DEBUGLOG_B(x) \
+  if (baseDebugFile.is_open()) baseDebugFile << "\t" << x
+#else
+#define DEBUGLOG_B(x)
+#endif
+
+using namespace std;
 
 typedef struct MIDIMessageInfoStruct {
   UInt8 status;
@@ -40,26 +56,25 @@ class MIDIOutputCallbackHelper {
 
   AUMIDIOutputCallbackStruct mMIDICallbackStruct;
 
-  typedef std::vector<MIDIMessageInfoStruct> MIDIMessageList;
+  typedef vector<MIDIMessageInfoStruct> MIDIMessageList;
   MIDIMessageList mMIDIMessageList;
 };
 
 class SinSynthWithMidi : public AUMonotimbralInstrumentBase {
  public:
   SinSynthWithMidi(AudioUnit inComponentInstance);
-  virtual ~SinSynthWithMidi();
+  ~SinSynthWithMidi();
 
-  virtual OSStatus GetPropertyInfo(AudioUnitPropertyID inID,
-                                   AudioUnitScope inScope,
-                                   AudioUnitElement inElement,
-                                   UInt32 &outDataSize, Boolean &outWritable);
+  OSStatus GetPropertyInfo(AudioUnitPropertyID inID, AudioUnitScope inScope,
+                           AudioUnitElement inElement, UInt32 &outDataSize,
+                           Boolean &outWritable);
 
-  virtual OSStatus GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
-                               AudioUnitElement inElement, void *outData);
+  OSStatus GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
+                       AudioUnitElement inElement, void *outData);
 
-  virtual OSStatus SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
-                               AudioUnitElement inElement, const void *inData,
-                               UInt32 inDataSize);
+  OSStatus SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
+                       AudioUnitElement inElement, const void *inData,
+                       UInt32 inDataSize);
 
   OSStatus HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
                            UInt8 data2, UInt32 inStartFrame);
@@ -84,6 +99,11 @@ class SinSynthWithMidi : public AUMonotimbralInstrumentBase {
 
  private:
   MIDIOutputCallbackHelper mCallbackHelper;
+
+ protected:
+#ifdef DEBUG
+  ofstream baseDebugFile;
+#endif
 };
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,15 +132,15 @@ void MIDIOutputCallbackHelper::FireAtTimeStamp(
         const MIDIMessageInfoStruct &item = *iter;
 
         Byte midiStatusByte = item.status + item.channel;
-        const Byte data[3] = {midiStatusByte, item.data1 + 1, item.data2 + 1};
+        const Byte data[3] = {midiStatusByte, item.data1, item.data2};
         UInt32 midiDataCount =
             ((item.status == 0xC || item.status == 0xD) ? 2 : 3);
+
         pkt = MIDIPacketListAdd(pktlist, kSizeofMIDIBuffer, pkt,
                                 item.startFrame, midiDataCount, data);
         if (!pkt) {
           // send what we have and then clear the buffer and then go through
-          // this again
-          // issue the callback with what we got
+          // this again issue the callback with what we got
           OSStatus result = (*mMIDICallbackStruct.midiOutputCallback)(
               mMIDICallbackStruct.userData, &inTimeStamp, 0, pktlist);
           if (result != noErr)
@@ -149,15 +169,29 @@ void MIDIOutputCallbackHelper::FireAtTimeStamp(
 
 AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, SinSynthWithMidi)
 
-static const AudioUnitParameterID kGlobalVolumeParam = 0;
-static const CFStringRef kGlobalVolumeName = CFSTR("global volume");
+static const AudioUnitParameterID kGlobalMuteSwitchParam = 0;
+static const CFStringRef kGlobalMuteSwitchName = CFSTR("Mute Switch");
 
 SinSynthWithMidi::SinSynthWithMidi(AudioComponentInstance inComponentInstance)
     : AUMonotimbralInstrumentBase(inComponentInstance, 0, 1) {
   CreateElements();
 
   Globals()->UseIndexedParameters(1);  // we're only defining one param
-  Globals()->SetParameter(kGlobalVolumeParam, 1.0);
+  Globals()->SetParameter(kGlobalMuteSwitchParam,
+                          false);  // initialize default value
+
+#ifdef DEBUG
+  string bPath, bFullFileName;
+  bPath = getenv("HOME");
+  if (!bPath.empty()) {
+    bFullFileName = bPath + "/Desktop/" + "Debug.log";
+  } else {
+    bFullFileName = "Debug.log";
+  }
+
+  baseDebugFile.open(bFullFileName.c_str());
+  DEBUGLOG_B("Plug-in constructor invoked with parameters:" << endl);
+#endif
 }
 
 SinSynthWithMidi::~SinSynthWithMidi() {}
@@ -183,20 +217,19 @@ OSStatus SinSynthWithMidi::GetPropertyInfo(AudioUnitPropertyID inID,
 }
 
 void SinSynthWithMidi::Cleanup() {
-#if DEBUG_PRINT
-  printf("SinSynth::Cleanup\n");
+#ifdef DEBUG
+  DEBUGLOG_B("SinSynth::Cleanup" << endl);
 #endif
 }
 
 OSStatus SinSynthWithMidi::Initialize() {
-#if DEBUG_PRINT
-  printf("->SinSynth::Initialize\n");
+#ifdef DEBUG
+  DEBUGLOG_B("->SinSynth::Initialize" << endl);
 #endif
   AUMonotimbralInstrumentBase::Initialize();
 
-//	SetNotes(kNumNotes, kMaxActiveNotes, mTestNotes, sizeof(TestNote));
-#if DEBUG_PRINT
-  printf("<-SinSynth::Initialize\n");
+#ifdef DEBUG
+  DEBUGLOG_B("<-SinSynth::Initialize" << endl);
 #endif
 
   return noErr;
@@ -217,8 +250,10 @@ AUElement *SinSynthWithMidi::CreateElement(AudioUnitScope scope,
 OSStatus SinSynthWithMidi::GetParameterInfo(
     AudioUnitScope inScope, AudioUnitParameterID inParameterID,
     AudioUnitParameterInfo &outParameterInfo) {
-  if (inParameterID != kGlobalVolumeParam)
+
+  if (inParameterID != kGlobalMuteSwitchParam)
     return kAudioUnitErr_InvalidParameter;
+
   if (inScope != kAudioUnitScope_Global) return kAudioUnitErr_InvalidScope;
 
   outParameterInfo.flags = SetAudioUnitParameterDisplayType(
@@ -226,11 +261,11 @@ OSStatus SinSynthWithMidi::GetParameterInfo(
   outParameterInfo.flags += kAudioUnitParameterFlag_IsWritable;
   outParameterInfo.flags += kAudioUnitParameterFlag_IsReadable;
 
-  AUBase::FillInParameterName(outParameterInfo, kGlobalVolumeName, false);
-  outParameterInfo.unit = kAudioUnitParameterUnit_LinearGain;
-  outParameterInfo.minValue = 0;
-  outParameterInfo.maxValue = 1.0;
-  outParameterInfo.defaultValue = 1.0;
+  AUBase::FillInParameterName(outParameterInfo, kGlobalMuteSwitchName, false);
+  outParameterInfo.unit = kAudioUnitParameterUnit_Boolean;
+  outParameterInfo.minValue = false;
+  outParameterInfo.maxValue = true;
+  outParameterInfo.defaultValue = true;  // disabled?
   return noErr;
 }
 
@@ -257,6 +292,9 @@ OSStatus SinSynthWithMidi::SetProperty(AudioUnitPropertyID inID,
                                        AudioUnitScope inScope,
                                        AudioUnitElement inElement,
                                        const void *inData, UInt32 inDataSize) {
+#ifdef DEBUG
+  DEBUGLOG_B("SetProperty" << endl);
+#endif
   if (inScope == kAudioUnitScope_Global) {
     if (inID == kAudioUnitProperty_MIDIOutputCallback) {
       if (inDataSize < sizeof(AUMIDIOutputCallbackStruct))
@@ -276,8 +314,16 @@ OSStatus SinSynthWithMidi::SetProperty(AudioUnitPropertyID inID,
 OSStatus SinSynthWithMidi::HandleMidiEvent(UInt8 status, UInt8 channel,
                                            UInt8 data1, UInt8 data2,
                                            UInt32 inStartFrame) {
+
+  bool sw = Globals()->GetParameter(kGlobalMuteSwitchParam);
+
+#ifdef DEBUG
+  DEBUGLOG_B("HandleMidiEvent - Mute Switch: " << sw << endl);
+#endif
+
   // snag the midi event and then store it in a vector
-  mCallbackHelper.AddMIDIEvent(status, channel, data1, data2, inStartFrame);
+  if (!sw || status != 0x90)
+    mCallbackHelper.AddMIDIEvent(status, channel, data1, data2, inStartFrame);
 
   return AUMIDIBase::HandleMidiEvent(status, channel, data1, data2,
                                      inStartFrame);
@@ -286,6 +332,7 @@ OSStatus SinSynthWithMidi::HandleMidiEvent(UInt8 status, UInt8 channel,
 OSStatus SinSynthWithMidi::Render(AudioUnitRenderActionFlags &ioActionFlags,
                                   const AudioTimeStamp &inTimeStamp,
                                   UInt32 inNumberFrames) {
+
   OSStatus result =
       AUInstrumentBase::Render(ioActionFlags, inTimeStamp, inNumberFrames);
   if (result == noErr) {
