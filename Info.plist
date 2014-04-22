@@ -8,17 +8,17 @@
 			<key>description</key>
 			<string>Mute Note On MIDI Signal</string>
 			<key>factoryFunction</key>
-			<string>SinSynthFactory</string>
+			<string>MuteNoteOnFactory</string>
 			<key>manufacturer</key>
 			<string>EMAH</string>
 			<key>name</key>
 			<string>Emahub: MuteNoteOn</string>
+			<key>sandboxSafe</key>
+			<true/>
 			<key>subtype</key>
 			<string>mtno</string>
 			<key>type</key>
 			<string>aumi</string>
-			<key>sandboxSafe</key>
-			<true/>
 			<key>version</key>
 			<integer>65536</integer>
 		</dict>
@@ -26,15 +26,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>SinSynth</string>
+	<string>MuteNoteOn</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.audiounit.sinsynth</string>
+	<string>com.apple.audiounit.mutenoteon</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>SinSynth</string>
+	<string>MuteNoteOn</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>

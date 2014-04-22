@@ -1,5 +1,5 @@
 #include "AUInstrumentBase.h"
-#include "SinSynthVersion.h"
+#include "MuteNoteOnVersion.h"
 #include <CoreMIDI/CoreMIDI.h>
 #include <vector>
 #include <cstring>
@@ -59,10 +59,10 @@ class MIDIOutputCallbackHelper {
   MIDIMessageList mMIDIMessageList;
 };
 
-class SinSynth : public AUMonotimbralInstrumentBase {
+class MuteNoteOn : public AUMonotimbralInstrumentBase {
  public:
-  SinSynth(AudioUnit inComponentInstance);
-  ~SinSynth();
+  MuteNoteOn(AudioUnit inComponentInstance);
+  ~MuteNoteOn();
 
   OSStatus GetPropertyInfo(AudioUnitPropertyID inID, AudioUnitScope inScope,
                            AudioUnitElement inElement, UInt32 &outDataSize,
@@ -83,7 +83,7 @@ class SinSynth : public AUMonotimbralInstrumentBase {
 
   OSStatus Initialize();
   void Cleanup();
-  OSStatus Version() { return kSinSynthVersion; }
+  OSStatus Version() { return kMuteNoteOnVersion; }
 
   AUElement *CreateElement(AudioUnitScope scope, AudioUnitElement element);
 
@@ -163,15 +163,15 @@ void MIDIOutputCallbackHelper::FireAtTimeStamp(
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#pragma mark SinSynth Methods
+#pragma mark MuteNoteOn Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, SinSynth)
+AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, MuteNoteOn)
 
 static const AudioUnitParameterID kGlobalMuteSwitchParam = 0;
 static const CFStringRef kGlobalMuteSwitchName = CFSTR("Mute Switch");
 
-SinSynth::SinSynth(AudioComponentInstance inComponentInstance)
+MuteNoteOn::MuteNoteOn(AudioComponentInstance inComponentInstance)
     : AUMonotimbralInstrumentBase(inComponentInstance, 0, 1) {
   CreateElements();
 
@@ -193,9 +193,9 @@ SinSynth::SinSynth(AudioComponentInstance inComponentInstance)
 #endif
 }
 
-SinSynth::~SinSynth() {}
+MuteNoteOn::~MuteNoteOn() {}
 
-OSStatus SinSynth::GetPropertyInfo(AudioUnitPropertyID inID,
+OSStatus MuteNoteOn::GetPropertyInfo(AudioUnitPropertyID inID,
                                    AudioUnitScope inScope,
                                    AudioUnitElement inElement,
                                    UInt32 &outDataSize, Boolean &outWritable) {
@@ -214,27 +214,27 @@ OSStatus SinSynth::GetPropertyInfo(AudioUnitPropertyID inID,
                                                       outDataSize, outWritable);
 }
 
-void SinSynth::Cleanup() {
+void MuteNoteOn::Cleanup() {
 #ifdef DEBUG
-  DEBUGLOG_B("SinSynth::Cleanup" << endl);
+  DEBUGLOG_B("MuteNoteOn::Cleanup" << endl);
 #endif
 }
 
-OSStatus SinSynth::Initialize() {
+OSStatus MuteNoteOn::Initialize() {
 #ifdef DEBUG
-  DEBUGLOG_B("->SinSynth::Initialize" << endl);
+  DEBUGLOG_B("->MuteNoteOn::Initialize" << endl);
 #endif
 
   AUMonotimbralInstrumentBase::Initialize();
 
 #ifdef DEBUG
-  DEBUGLOG_B("<-SinSynth::Initialize" << endl);
+  DEBUGLOG_B("<-MuteNoteOn::Initialize" << endl);
 #endif
 
   return noErr;
 }
 
-AUElement *SinSynth::CreateElement(AudioUnitScope scope,
+AUElement *MuteNoteOn::CreateElement(AudioUnitScope scope,
                                    AudioUnitElement element) {
 #ifdef DEBUG
   DEBUGLOG_B("CreateElement - scope: " << scope << endl);
@@ -249,7 +249,7 @@ AUElement *SinSynth::CreateElement(AudioUnitScope scope,
   }
 }
 
-OSStatus SinSynth::GetParameterInfo(AudioUnitScope inScope,
+OSStatus MuteNoteOn::GetParameterInfo(AudioUnitScope inScope,
                                     AudioUnitParameterID inParameterID,
                                     AudioUnitParameterInfo &outParameterInfo) {
 
@@ -271,7 +271,7 @@ OSStatus SinSynth::GetParameterInfo(AudioUnitScope inScope,
   return noErr;
 }
 
-OSStatus SinSynth::GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
+OSStatus MuteNoteOn::GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
                                AudioUnitElement inElement, void *outData) {
   if (inScope == kAudioUnitScope_Global) {
     if (inID == kAudioUnitProperty_MIDIOutputCallbackInfo) {
@@ -288,7 +288,7 @@ OSStatus SinSynth::GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
                                                   outData);
 }
 
-OSStatus SinSynth::SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
+OSStatus MuteNoteOn::SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
                                AudioUnitElement inElement, const void *inData,
                                UInt32 inDataSize) {
 #ifdef DEBUG
@@ -310,7 +310,7 @@ OSStatus SinSynth::SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
                                                   inData, inDataSize);
 }
 
-OSStatus SinSynth::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
+OSStatus MuteNoteOn::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
                                    UInt8 data2, UInt32 inStartFrame) {
 
   bool sw = Globals()->GetParameter(kGlobalMuteSwitchParam);
@@ -327,7 +327,7 @@ OSStatus SinSynth::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
                                      inStartFrame);
 }
 
-OSStatus SinSynth::Render(AudioUnitRenderActionFlags &ioActionFlags,
+OSStatus MuteNoteOn::Render(AudioUnitRenderActionFlags &ioActionFlags,
                           const AudioTimeStamp &inTimeStamp,
                           UInt32 inNumberFrames) {
 
