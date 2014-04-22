@@ -9,10 +9,9 @@
 #include <ctime>
 #endif
 
-// two debug macros (one for the "base" class, one for "kernel") defined
 #ifdef DEBUG
 #define DEBUGLOG_B(x) \
-  if (baseDebugFile.is_open()) baseDebugFile << "\t" << x
+  if (baseDebugFile.is_open()) baseDebugFile << x
 #else
 #define DEBUGLOG_B(x)
 #endif
@@ -226,6 +225,7 @@ OSStatus SinSynthWithMidi::Initialize() {
 #ifdef DEBUG
   DEBUGLOG_B("->SinSynth::Initialize" << endl);
 #endif
+  
   AUMonotimbralInstrumentBase::Initialize();
 
 #ifdef DEBUG
@@ -237,6 +237,9 @@ OSStatus SinSynthWithMidi::Initialize() {
 
 AUElement *SinSynthWithMidi::CreateElement(AudioUnitScope scope,
                                            AudioUnitElement element) {
+#ifdef DEBUG
+  DEBUGLOG_B("CreateElement - scope: " << scope << endl);
+#endif
   switch (scope) {
     case kAudioUnitScope_Group:
       return new SynthGroupElement(this, element, new MidiControls);
