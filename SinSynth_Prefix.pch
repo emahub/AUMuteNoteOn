@@ -1,6 +1,4 @@
-//
-// Prefix header for all source files of the 'SinSynth' target in the 'SinSynth' project.
-//
+// Prefix header for all source files
 
 #include <CoreAudio/CoreAudioTypes.h>
 #include <AudioUnit/AudioUnit.h>

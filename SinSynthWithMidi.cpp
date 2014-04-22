@@ -144,27 +144,15 @@ public:
 			OSStatus			Render(					AudioUnitRenderActionFlags &	ioActionFlags,
 														const AudioTimeStamp &			inTimeStamp,
 														UInt32							inNumberFrames);
-
-    //void Cleanup();
-    //OSStatus Initialize();
     
-    /*
-    AUElement* CreateElement(	AudioUnitScope				scope,
-                                AudioUnitElement			element);
-    
-    OSStatus GetParameterInfo(	AudioUnitScope				inScope,
-                                AudioUnitParameterID		inParameterID,
-                                AudioUnitParameterInfo &	outParameterInfo);
-    */
-    
-    virtual OSStatus			Initialize();
-	virtual void				Cleanup();
+    OSStatus			Initialize();
+    void				Cleanup();
     OSStatus			Version() { return kSinSynthVersion; }
     
-	virtual AUElement*			CreateElement(			AudioUnitScope					scope,
+    AUElement*			CreateElement(			AudioUnitScope					scope,
 											  AudioUnitElement				element);
     
-	virtual OSStatus			GetParameterInfo(		AudioUnitScope					inScope,
+    OSStatus			GetParameterInfo(		AudioUnitScope					inScope,
                                                  AudioUnitParameterID			inParameterID,
                                                  AudioUnitParameterInfo &		outParameterInfo);
     

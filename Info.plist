@@ -6,17 +6,17 @@
 	<array>
 		<dict>
 			<key>description</key>
-			<string>SinSynth AudioUnit</string>
+			<string>SinSynthWithMIDI AudioUnit</string>
 			<key>factoryFunction</key>
-			<string>SinSynthFactory</string>
+			<string>SinSynthWithMidiFactory</string>
 			<key>manufacturer</key>
-			<string>DEMO</string>
+			<string>EMAH</string>
 			<key>name</key>
-			<string>Apple Sample Code: SinSynth (Instrument AU)</string>
+			<string>Emahub: NoteOn Mute</string>
 			<key>subtype</key>
-			<string>JSIN</string>
+			<string>nomt</string>
 			<key>type</key>
-			<string>aumu</string>
+			<string>aumi</string>
 			<key>sandboxSafe</key>
 			<true/>
 			<key>version</key>
@@ -26,15 +26,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>SinSynth</string>
+	<string>SinSynthWithMIDI</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.audiounit.sinsynth</string>
+	<string>com.apple.audiounit.sinsynthwithmidi</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>SinSynth</string>
+	<string>SinSynthWithMidi</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
