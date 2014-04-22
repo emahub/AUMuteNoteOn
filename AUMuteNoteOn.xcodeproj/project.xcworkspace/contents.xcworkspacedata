@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MuteNoteOn.xcodeproj">
+      location = "self:AUMuteNoteOn.xcodeproj">
    </FileRef>
 </Workspace>

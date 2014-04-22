@@ -6,13 +6,13 @@
 	<array>
 		<dict>
 			<key>description</key>
-			<string>Mute Note On MIDI Signal</string>
+			<string>Mute NoteOn MIDI Signal</string>
 			<key>factoryFunction</key>
-			<string>MuteNoteOnFactory</string>
+			<string>AUMuteNoteOnFactory</string>
 			<key>manufacturer</key>
 			<string>EMAH</string>
 			<key>name</key>
-			<string>Emahub: MuteNoteOn</string>
+			<string>Emahub: AUMuteNoteOn</string>
 			<key>sandboxSafe</key>
 			<true/>
 			<key>subtype</key>
@@ -26,15 +26,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>MuteNoteOn</string>
+	<string>AUMuteNoteOn</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.audiounit.mutenoteon</string>
+	<string>com.apple.audiounit.aumutenoteon</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>MuteNoteOn</string>
+	<string>AUMuteNoteOn</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>

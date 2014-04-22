@@ -1,5 +1,5 @@
 #include "AUInstrumentBase.h"
-#include "MuteNoteOnVersion.h"
+#include "AUMuteNoteOnVersion.h"
 #include <CoreMIDI/CoreMIDI.h>
 #include <vector>
 #include <cstring>
@@ -59,10 +59,10 @@ class MIDIOutputCallbackHelper {
   MIDIMessageList mMIDIMessageList;
 };
 
-class MuteNoteOn : public AUMonotimbralInstrumentBase {
+class AUMuteNoteOn : public AUMonotimbralInstrumentBase {
  public:
-  MuteNoteOn(AudioUnit inComponentInstance);
-  ~MuteNoteOn();
+  AUMuteNoteOn(AudioUnit inComponentInstance);
+  ~AUMuteNoteOn();
 
   OSStatus GetPropertyInfo(AudioUnitPropertyID inID, AudioUnitScope inScope,
                            AudioUnitElement inElement, UInt32 &outDataSize,
@@ -83,7 +83,7 @@ class MuteNoteOn : public AUMonotimbralInstrumentBase {
 
   OSStatus Initialize();
   void Cleanup();
-  OSStatus Version() { return kMuteNoteOnVersion; }
+  OSStatus Version() { return kAUMuteNoteOnVersion; }
 
   AUElement *CreateElement(AudioUnitScope scope, AudioUnitElement element);
 
@@ -163,15 +163,15 @@ void MIDIOutputCallbackHelper::FireAtTimeStamp(
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#pragma mark MuteNoteOn Methods
+#pragma mark AUMuteNoteOn Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, MuteNoteOn)
+AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, AUMuteNoteOn)
 
 static const AudioUnitParameterID kGlobalMuteSwitchParam = 0;
 static const CFStringRef kGlobalMuteSwitchName = CFSTR("Mute Switch");
 
-MuteNoteOn::MuteNoteOn(AudioComponentInstance inComponentInstance)
+AUMuteNoteOn::AUMuteNoteOn(AudioComponentInstance inComponentInstance)
     : AUMonotimbralInstrumentBase(inComponentInstance, 0, 1) {
   CreateElements();
 
@@ -193,12 +193,13 @@ MuteNoteOn::MuteNoteOn(AudioComponentInstance inComponentInstance)
 #endif
 }
 
-MuteNoteOn::~MuteNoteOn() {}
+AUMuteNoteOn::~AUMuteNoteOn() {}
 
-OSStatus MuteNoteOn::GetPropertyInfo(AudioUnitPropertyID inID,
-                                   AudioUnitScope inScope,
-                                   AudioUnitElement inElement,
-                                   UInt32 &outDataSize, Boolean &outWritable) {
+OSStatus AUMuteNoteOn::GetPropertyInfo(AudioUnitPropertyID inID,
+                                       AudioUnitScope inScope,
+                                       AudioUnitElement inElement,
+                                       UInt32 &outDataSize,
+                                       Boolean &outWritable) {
   if (inScope == kAudioUnitScope_Global) {
     if (inID == kAudioUnitProperty_MIDIOutputCallbackInfo) {
       outDataSize = sizeof(CFArrayRef);
@@ -214,28 +215,28 @@ OSStatus MuteNoteOn::GetPropertyInfo(AudioUnitPropertyID inID,
                                                       outDataSize, outWritable);
 }
 
-void MuteNoteOn::Cleanup() {
+void AUMuteNoteOn::Cleanup() {
 #ifdef DEBUG
-  DEBUGLOG_B("MuteNoteOn::Cleanup" << endl);
+  DEBUGLOG_B("AUMuteNoteOn::Cleanup" << endl);
 #endif
 }
 
-OSStatus MuteNoteOn::Initialize() {
+OSStatus AUMuteNoteOn::Initialize() {
 #ifdef DEBUG
-  DEBUGLOG_B("->MuteNoteOn::Initialize" << endl);
+  DEBUGLOG_B("->AUMuteNoteOn::Initialize" << endl);
 #endif
 
   AUMonotimbralInstrumentBase::Initialize();
 
 #ifdef DEBUG
-  DEBUGLOG_B("<-MuteNoteOn::Initialize" << endl);
+  DEBUGLOG_B("<-AUMuteNoteOn::Initialize" << endl);
 #endif
 
   return noErr;
 }
 
-AUElement *MuteNoteOn::CreateElement(AudioUnitScope scope,
-                                   AudioUnitElement element) {
+AUElement *AUMuteNoteOn::CreateElement(AudioUnitScope scope,
+                                       AudioUnitElement element) {
 #ifdef DEBUG
   DEBUGLOG_B("CreateElement - scope: " << scope << endl);
 #endif
@@ -249,9 +250,9 @@ AUElement *MuteNoteOn::CreateElement(AudioUnitScope scope,
   }
 }
 
-OSStatus MuteNoteOn::GetParameterInfo(AudioUnitScope inScope,
-                                    AudioUnitParameterID inParameterID,
-                                    AudioUnitParameterInfo &outParameterInfo) {
+OSStatus AUMuteNoteOn::GetParameterInfo(
+    AudioUnitScope inScope, AudioUnitParameterID inParameterID,
+    AudioUnitParameterInfo &outParameterInfo) {
 
   if (inParameterID != kGlobalMuteSwitchParam)
     return kAudioUnitErr_InvalidParameter;
@@ -271,8 +272,9 @@ OSStatus MuteNoteOn::GetParameterInfo(AudioUnitScope inScope,
   return noErr;
 }
 
-OSStatus MuteNoteOn::GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
-                               AudioUnitElement inElement, void *outData) {
+OSStatus AUMuteNoteOn::GetProperty(AudioUnitPropertyID inID,
+                                   AudioUnitScope inScope,
+                                   AudioUnitElement inElement, void *outData) {
   if (inScope == kAudioUnitScope_Global) {
     if (inID == kAudioUnitProperty_MIDIOutputCallbackInfo) {
       CFStringRef strs[1];
@@ -288,9 +290,10 @@ OSStatus MuteNoteOn::GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScop
                                                   outData);
 }
 
-OSStatus MuteNoteOn::SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
-                               AudioUnitElement inElement, const void *inData,
-                               UInt32 inDataSize) {
+OSStatus AUMuteNoteOn::SetProperty(AudioUnitPropertyID inID,
+                                   AudioUnitScope inScope,
+                                   AudioUnitElement inElement,
+                                   const void *inData, UInt32 inDataSize) {
 #ifdef DEBUG
   DEBUGLOG_B("SetProperty" << endl);
 #endif
@@ -310,8 +313,8 @@ OSStatus MuteNoteOn::SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScop
                                                   inData, inDataSize);
 }
 
-OSStatus MuteNoteOn::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
-                                   UInt8 data2, UInt32 inStartFrame) {
+OSStatus AUMuteNoteOn::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
+                                       UInt8 data2, UInt32 inStartFrame) {
 
   bool sw = Globals()->GetParameter(kGlobalMuteSwitchParam);
 
@@ -327,9 +330,9 @@ OSStatus MuteNoteOn::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
                                      inStartFrame);
 }
 
-OSStatus MuteNoteOn::Render(AudioUnitRenderActionFlags &ioActionFlags,
-                          const AudioTimeStamp &inTimeStamp,
-                          UInt32 inNumberFrames) {
+OSStatus AUMuteNoteOn::Render(AudioUnitRenderActionFlags &ioActionFlags,
+                              const AudioTimeStamp &inTimeStamp,
+                              UInt32 inNumberFrames) {
 
   OSStatus result =
       AUInstrumentBase::Render(ioActionFlags, inTimeStamp, inNumberFrames);
