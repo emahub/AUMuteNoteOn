@@ -59,10 +59,10 @@ class MIDIOutputCallbackHelper {
   MIDIMessageList mMIDIMessageList;
 };
 
-class SinSynthWithMidi : public AUMonotimbralInstrumentBase {
+class SinSynth : public AUMonotimbralInstrumentBase {
  public:
-  SinSynthWithMidi(AudioUnit inComponentInstance);
-  ~SinSynthWithMidi();
+  SinSynth(AudioUnit inComponentInstance);
+  ~SinSynth();
 
   OSStatus GetPropertyInfo(AudioUnitPropertyID inID, AudioUnitScope inScope,
                            AudioUnitElement inElement, UInt32 &outDataSize,
@@ -163,15 +163,15 @@ void MIDIOutputCallbackHelper::FireAtTimeStamp(
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#pragma mark SinSynthWithMidi Methods
+#pragma mark SinSynth Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, SinSynthWithMidi)
+AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, SinSynth)
 
 static const AudioUnitParameterID kGlobalMuteSwitchParam = 0;
 static const CFStringRef kGlobalMuteSwitchName = CFSTR("Mute Switch");
 
-SinSynthWithMidi::SinSynthWithMidi(AudioComponentInstance inComponentInstance)
+SinSynth::SinSynth(AudioComponentInstance inComponentInstance)
     : AUMonotimbralInstrumentBase(inComponentInstance, 0, 1) {
   CreateElements();
 
@@ -193,13 +193,12 @@ SinSynthWithMidi::SinSynthWithMidi(AudioComponentInstance inComponentInstance)
 #endif
 }
 
-SinSynthWithMidi::~SinSynthWithMidi() {}
+SinSynth::~SinSynth() {}
 
-OSStatus SinSynthWithMidi::GetPropertyInfo(AudioUnitPropertyID inID,
-                                           AudioUnitScope inScope,
-                                           AudioUnitElement inElement,
-                                           UInt32 &outDataSize,
-                                           Boolean &outWritable) {
+OSStatus SinSynth::GetPropertyInfo(AudioUnitPropertyID inID,
+                                   AudioUnitScope inScope,
+                                   AudioUnitElement inElement,
+                                   UInt32 &outDataSize, Boolean &outWritable) {
   if (inScope == kAudioUnitScope_Global) {
     if (inID == kAudioUnitProperty_MIDIOutputCallbackInfo) {
       outDataSize = sizeof(CFArrayRef);
@@ -215,17 +214,17 @@ OSStatus SinSynthWithMidi::GetPropertyInfo(AudioUnitPropertyID inID,
                                                       outDataSize, outWritable);
 }
 
-void SinSynthWithMidi::Cleanup() {
+void SinSynth::Cleanup() {
 #ifdef DEBUG
   DEBUGLOG_B("SinSynth::Cleanup" << endl);
 #endif
 }
 
-OSStatus SinSynthWithMidi::Initialize() {
+OSStatus SinSynth::Initialize() {
 #ifdef DEBUG
   DEBUGLOG_B("->SinSynth::Initialize" << endl);
 #endif
-  
+
   AUMonotimbralInstrumentBase::Initialize();
 
 #ifdef DEBUG
@@ -235,8 +234,8 @@ OSStatus SinSynthWithMidi::Initialize() {
   return noErr;
 }
 
-AUElement *SinSynthWithMidi::CreateElement(AudioUnitScope scope,
-                                           AudioUnitElement element) {
+AUElement *SinSynth::CreateElement(AudioUnitScope scope,
+                                   AudioUnitElement element) {
 #ifdef DEBUG
   DEBUGLOG_B("CreateElement - scope: " << scope << endl);
 #endif
@@ -250,9 +249,9 @@ AUElement *SinSynthWithMidi::CreateElement(AudioUnitScope scope,
   }
 }
 
-OSStatus SinSynthWithMidi::GetParameterInfo(
-    AudioUnitScope inScope, AudioUnitParameterID inParameterID,
-    AudioUnitParameterInfo &outParameterInfo) {
+OSStatus SinSynth::GetParameterInfo(AudioUnitScope inScope,
+                                    AudioUnitParameterID inParameterID,
+                                    AudioUnitParameterInfo &outParameterInfo) {
 
   if (inParameterID != kGlobalMuteSwitchParam)
     return kAudioUnitErr_InvalidParameter;
@@ -272,10 +271,8 @@ OSStatus SinSynthWithMidi::GetParameterInfo(
   return noErr;
 }
 
-OSStatus SinSynthWithMidi::GetProperty(AudioUnitPropertyID inID,
-                                       AudioUnitScope inScope,
-                                       AudioUnitElement inElement,
-                                       void *outData) {
+OSStatus SinSynth::GetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
+                               AudioUnitElement inElement, void *outData) {
   if (inScope == kAudioUnitScope_Global) {
     if (inID == kAudioUnitProperty_MIDIOutputCallbackInfo) {
       CFStringRef strs[1];
@@ -291,10 +288,9 @@ OSStatus SinSynthWithMidi::GetProperty(AudioUnitPropertyID inID,
                                                   outData);
 }
 
-OSStatus SinSynthWithMidi::SetProperty(AudioUnitPropertyID inID,
-                                       AudioUnitScope inScope,
-                                       AudioUnitElement inElement,
-                                       const void *inData, UInt32 inDataSize) {
+OSStatus SinSynth::SetProperty(AudioUnitPropertyID inID, AudioUnitScope inScope,
+                               AudioUnitElement inElement, const void *inData,
+                               UInt32 inDataSize) {
 #ifdef DEBUG
   DEBUGLOG_B("SetProperty" << endl);
 #endif
@@ -314,9 +310,8 @@ OSStatus SinSynthWithMidi::SetProperty(AudioUnitPropertyID inID,
                                                   inData, inDataSize);
 }
 
-OSStatus SinSynthWithMidi::HandleMidiEvent(UInt8 status, UInt8 channel,
-                                           UInt8 data1, UInt8 data2,
-                                           UInt32 inStartFrame) {
+OSStatus SinSynth::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
+                                   UInt8 data2, UInt32 inStartFrame) {
 
   bool sw = Globals()->GetParameter(kGlobalMuteSwitchParam);
 
@@ -332,9 +327,9 @@ OSStatus SinSynthWithMidi::HandleMidiEvent(UInt8 status, UInt8 channel,
                                      inStartFrame);
 }
 
-OSStatus SinSynthWithMidi::Render(AudioUnitRenderActionFlags &ioActionFlags,
-                                  const AudioTimeStamp &inTimeStamp,
-                                  UInt32 inNumberFrames) {
+OSStatus SinSynth::Render(AudioUnitRenderActionFlags &ioActionFlags,
+                          const AudioTimeStamp &inTimeStamp,
+                          UInt32 inNumberFrames) {
 
   OSStatus result =
       AUInstrumentBase::Render(ioActionFlags, inTimeStamp, inNumberFrames);

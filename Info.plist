@@ -8,7 +8,7 @@
 			<key>description</key>
 			<string>Mute Note On MIDI Signal</string>
 			<key>factoryFunction</key>
-			<string>SinSynthWithMidiFactory</string>
+			<string>SinSynthFactory</string>
 			<key>manufacturer</key>
 			<string>EMAH</string>
 			<key>name</key>
@@ -26,15 +26,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>SinSynthWithMIDI</string>
+	<string>SinSynth</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.audiounit.sinsynthwithmidi</string>
+	<string>com.apple.audiounit.sinsynth</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>SinSynthWithMidi</string>
+	<string>SinSynth</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>

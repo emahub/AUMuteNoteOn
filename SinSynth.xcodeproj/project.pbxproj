@@ -46,7 +46,7 @@
 		4CC3058D0BD6DEBC008E97BD /* CAVectorUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A919E389088DC5A2008B8742 /* CAVectorUnit.cpp */; };
 		4CC3058E0BD6DEBC008E97BD /* CAAUMIDIMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A919E391088DC5BB008B8742 /* CAAUMIDIMap.cpp */; };
 		4CC3058F0BD6DEBC008E97BD /* CAAUMIDIMapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A919E393088DC5BB008B8742 /* CAAUMIDIMapManager.cpp */; };
-		4CC305910BD6DEBC008E97BD /* SinSynthWithMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305200BD6D936008E97BD /* SinSynthWithMidi.cpp */; };
+		4CC305910BD6DEBC008E97BD /* SinSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305200BD6D936008E97BD /* SinSynth.cpp */; };
 		4CC305930BD6DEBC008E97BD /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929067A9061260B00065C650 /* AudioUnit.framework */; };
 		4CC305940BD6DEBC008E97BD /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C53589061360CC00D90F41 /* CoreServices.framework */; };
 		4CC305950BD6DEBC008E97BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A919E53A088DCA5A008B8742 /* AudioToolbox.framework */; };
@@ -62,10 +62,9 @@
 /* Begin PBXFileReference section */
 		304FE91212C2B3C600DCE7DF /* AUPlugInDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUPlugInDispatch.cpp; sourceTree = "<group>"; };
 		304FE91312C2B3C600DCE7DF /* AUPlugInDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUPlugInDispatch.h; sourceTree = "<group>"; };
-		4CC305200BD6D936008E97BD /* SinSynthWithMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SinSynthWithMidi.cpp; sourceTree = "<group>"; };
+		4CC305200BD6D936008E97BD /* SinSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SinSynth.cpp; sourceTree = "<group>"; };
 		4CC3055E0BD6DE8F008E97BD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
-		4CC3059D0BD6DEBC008E97BD /* SinSynthWithMidi.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SinSynthWithMidi.component; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CC305AA0BD6DF38008E97BD /* SinSynthWithMidi.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.exports; path = SinSynthWithMidi.exp; sourceTree = "<group>"; };
+		4CC3059D0BD6DEBC008E97BD /* SinSynth.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SinSynth.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		593357D7107BBE9200693A4E /* AUMIDIDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMIDIDefs.h; sourceTree = "<group>"; };
 		9208748A081F0B79008E9964 /* AUInstrumentBase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = AUInstrumentBase.cpp; path = ../AUPublic/AUInstrumentBase/AUInstrumentBase.cpp; sourceTree = SOURCE_ROOT; };
 		9208748B081F0B79008E9964 /* AUInstrumentBase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AUInstrumentBase.h; sourceTree = "<group>"; };
@@ -168,9 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				A9223CDA08A032FD00341607 /* SinSynth_Prefix.pch */,
-				4CC305200BD6D936008E97BD /* SinSynthWithMidi.cpp */,
+				4CC305200BD6D936008E97BD /* SinSynth.cpp */,
 				A9223CD308A032F100341607 /* SinSynth.exp */,
-				4CC305AA0BD6DF38008E97BD /* SinSynthWithMidi.exp */,
 				A9223CD508A032F100341607 /* SinSynthVersion.h */,
 				929E1BF5066E29DE00218B60 /* AUPublic */,
 				929E1C53066E2A2200218B60 /* PublicUtility */,
@@ -181,7 +179,7 @@
 		19C28FB4FE9D528D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4CC3059D0BD6DEBC008E97BD /* SinSynthWithMidi.component */,
+				4CC3059D0BD6DEBC008E97BD /* SinSynth.component */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -318,9 +316,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4CC305620BD6DEBC008E97BD /* SinSynth with MIDI Output */ = {
+		4CC305620BD6DEBC008E97BD /* SinSynth */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "SinSynth with MIDI Output" */;
+			buildConfigurationList = 4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "SinSynth" */;
 			buildPhases = (
 				4CC305630BD6DEBC008E97BD /* Headers */,
 				4CC3057C0BD6DEBC008E97BD /* Resources */,
@@ -332,10 +330,10 @@
 			);
 			dependencies = (
 			);
-			name = "SinSynth with MIDI Output";
+			name = SinSynth;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = AUAnalogSynth;
-			productReference = 4CC3059D0BD6DEBC008E97BD /* SinSynthWithMidi.component */;
+			productReference = 4CC3059D0BD6DEBC008E97BD /* SinSynth.component */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -360,7 +358,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4CC305620BD6DEBC008E97BD /* SinSynth with MIDI Output */,
+				4CC305620BD6DEBC008E97BD /* SinSynth */,
 			);
 		};
 /* End PBXProject section */
@@ -408,7 +406,7 @@
 				4CC3058D0BD6DEBC008E97BD /* CAVectorUnit.cpp in Sources */,
 				4CC3058E0BD6DEBC008E97BD /* CAAUMIDIMap.cpp in Sources */,
 				4CC3058F0BD6DEBC008E97BD /* CAAUMIDIMapManager.cpp in Sources */,
-				4CC305910BD6DEBC008E97BD /* SinSynthWithMidi.cpp in Sources */,
+				4CC305910BD6DEBC008E97BD /* SinSynth.cpp in Sources */,
 				A90305530D9B38B30041311E /* AUBaseHelper.cpp in Sources */,
 				F77C7D950E254E4E00EFE153 /* CABufferList.cpp in Sources */,
 			);
@@ -423,7 +421,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				EXPORTED_SYMBOLS_FILE = SinSynthWithMidi.exp;
+				EXPORTED_SYMBOLS_FILE = SinSynth.exp;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -446,7 +444,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = SinSynthWithMidi;
+				PRODUCT_NAME = SinSynth;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -470,7 +468,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "SinSynth with MIDI Output" */ = {
+		4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "SinSynth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CC3059A0BD6DEBC008E97BD /* Development */,
