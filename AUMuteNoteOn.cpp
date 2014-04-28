@@ -2,7 +2,6 @@
 #include "AUMuteNoteOnVersion.h"
 #include <CoreMIDI/CoreMIDI.h>
 #include <vector>
-#include <cstring>
 
 #ifdef DEBUG
 #include <fstream>
@@ -168,16 +167,12 @@ void MIDIOutputCallbackHelper::FireAtTimeStamp(
 
 AUDIOCOMPONENT_ENTRY(AUMusicDeviceFactory, AUMuteNoteOn)
 
-static const AudioUnitParameterID kGlobalMuteSwitchParam = 0;
-static const CFStringRef kGlobalMuteSwitchName = CFSTR("Mute Switch");
-
 AUMuteNoteOn::AUMuteNoteOn(AudioComponentInstance inComponentInstance)
-    : AUMonotimbralInstrumentBase(inComponentInstance, 0, 1) {
+    : AUMonotimbralInstrumentBase(inComponentInstance, 0,
+                                  1) {  // should be 1 for output midi
   CreateElements();
 
-  Globals()->UseIndexedParameters(1);  // we're only defining one param
-  Globals()->SetParameter(kGlobalMuteSwitchParam,
-                          false);  // initialize default value
+  Globals()->UseIndexedParameters(16);  // we're defining 16 param
 
 #ifdef DEBUG
   string bPath, bFullFileName;
@@ -193,7 +188,11 @@ AUMuteNoteOn::AUMuteNoteOn(AudioComponentInstance inComponentInstance)
 #endif
 }
 
-AUMuteNoteOn::~AUMuteNoteOn() {}
+AUMuteNoteOn::~AUMuteNoteOn() {
+#ifdef DEBUG
+  DEBUGLOG_B("AUMuteNoteOn::~AUMuteNoteOn" << endl);
+#endif
+}
 
 OSStatus AUMuteNoteOn::GetPropertyInfo(AudioUnitPropertyID inID,
                                        AudioUnitScope inScope,
@@ -254,8 +253,7 @@ OSStatus AUMuteNoteOn::GetParameterInfo(
     AudioUnitScope inScope, AudioUnitParameterID inParameterID,
     AudioUnitParameterInfo &outParameterInfo) {
 
-  if (inParameterID != kGlobalMuteSwitchParam)
-    return kAudioUnitErr_InvalidParameter;
+  if (inParameterID >= 16) return kAudioUnitErr_InvalidParameter;
 
   if (inScope != kAudioUnitScope_Global) return kAudioUnitErr_InvalidScope;
 
@@ -264,11 +262,15 @@ OSStatus AUMuteNoteOn::GetParameterInfo(
   outParameterInfo.flags += kAudioUnitParameterFlag_IsWritable;
   outParameterInfo.flags += kAudioUnitParameterFlag_IsReadable;
 
-  AUBase::FillInParameterName(outParameterInfo, kGlobalMuteSwitchName, false);
+  CFStringRef cfs =
+      CFStringCreateWithFormat(NULL, NULL, CFSTR("Ch%d"), inParameterID + 1);
+  AUBase::FillInParameterName(outParameterInfo, cfs, false);
   outParameterInfo.unit = kAudioUnitParameterUnit_Boolean;
-  outParameterInfo.minValue = false;
-  outParameterInfo.maxValue = true;
-  outParameterInfo.defaultValue = true;  // disabled?
+  outParameterInfo.minValue = 0;
+  outParameterInfo.maxValue = 1;
+  // default value should be set in construtor with SetParameter method.
+  // outParameterInfo.defaultValue = 1;
+
   return noErr;
 }
 
@@ -315,15 +317,11 @@ OSStatus AUMuteNoteOn::SetProperty(AudioUnitPropertyID inID,
 
 OSStatus AUMuteNoteOn::HandleMidiEvent(UInt8 status, UInt8 channel, UInt8 data1,
                                        UInt8 data2, UInt32 inStartFrame) {
-
-  bool sw = Globals()->GetParameter(kGlobalMuteSwitchParam);
-
-#ifdef DEBUG
-  DEBUGLOG_B("HandleMidiEvent - Mute Switch: " << sw << endl);
-#endif
+  // data1 : note number, data2 : velocity
 
   // snag the midi event and then store it in a vector
-  if (!sw || status != 0x90)
+  if (!Globals()->GetParameter(channel) ||
+      ((status != 0x80 && status != 0x90) || (status == 0x80 && data1 != 0x00)))
     mCallbackHelper.AddMIDIEvent(status, channel, data1, data2, inStartFrame);
 
   return AUMIDIBase::HandleMidiEvent(status, channel, data1, data2,

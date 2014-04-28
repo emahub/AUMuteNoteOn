@@ -62,7 +62,7 @@
 /* Begin PBXFileReference section */
 		304FE91212C2B3C600DCE7DF /* AUPlugInDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUPlugInDispatch.cpp; sourceTree = "<group>"; };
 		304FE91312C2B3C600DCE7DF /* AUPlugInDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUPlugInDispatch.h; sourceTree = "<group>"; };
-		4CC305200BD6D936008E97BD /* AUMuteNoteOn.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AUMuteNoteOn.cpp; sourceTree = "<group>"; };
+		4CC305200BD6D936008E97BD /* AUMuteNoteOn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUMuteNoteOn.cpp; sourceTree = "<group>"; };
 		4CC3055E0BD6DE8F008E97BD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		4CC3059D0BD6DEBC008E97BD /* AUMuteNoteOn.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AUMuteNoteOn.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		593357D7107BBE9200693A4E /* AUMIDIDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMIDIDefs.h; sourceTree = "<group>"; };
