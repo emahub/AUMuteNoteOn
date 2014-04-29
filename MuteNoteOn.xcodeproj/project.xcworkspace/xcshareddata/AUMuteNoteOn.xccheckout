@@ -7,21 +7,21 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>6F10965B-76A6-49C1-A485-01E9C1718EE6</string>
 	<key>IDESourceControlProjectName</key>
-	<string>AUMuteNoteOn</string>
+	<string>MuteNoteOn</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>222EF619-4BD1-4B7D-98F9-7F429E6E5C30</key>
-		<string>ssh://github.com/emahub/AUMuteNoteOn.git</string>
+		<string>ssh://github.com/emahub/MuteNoteOn.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>AUMuteNoteOn.xcodeproj/project.xcworkspace</string>
+	<string>MuteNoteOn.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>222EF619-4BD1-4B7D-98F9-7F429E6E5C30</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/emahub/AUMuteNoteOn.git</string>
+	<string>ssh://github.com/emahub/MuteNoteOn.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

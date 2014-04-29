@@ -27,8 +27,8 @@
 		4CC305760BD6DEBC008E97BD /* CAVectorUnitTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = A919E38B088DC5A2008B8742 /* CAVectorUnitTypes.h */; };
 		4CC305770BD6DEBC008E97BD /* CAAUMIDIMap.h in Headers */ = {isa = PBXBuildFile; fileRef = A919E392088DC5BB008B8742 /* CAAUMIDIMap.h */; };
 		4CC305780BD6DEBC008E97BD /* CAAUMIDIMapManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A919E394088DC5BB008B8742 /* CAAUMIDIMapManager.h */; };
-		4CC305790BD6DEBC008E97BD /* AUMuteNoteOnVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = A9223CD508A032F100341607 /* AUMuteNoteOnVersion.h */; };
-		4CC3057A0BD6DEBC008E97BD /* AUMuteNoteOn_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A9223CDA08A032FD00341607 /* AUMuteNoteOn_Prefix.pch */; };
+		4CC305790BD6DEBC008E97BD /* MuteNoteOnVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = A9223CD508A032F100341607 /* MuteNoteOnVersion.h */; };
+		4CC3057A0BD6DEBC008E97BD /* MuteNoteOn_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A9223CDA08A032FD00341607 /* MuteNoteOn_Prefix.pch */; };
 		4CC3057E0BD6DEBC008E97BD /* AUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929E1BF7066E29DE00218B60 /* AUBase.cpp */; };
 		4CC305800BD6DEBC008E97BD /* AUInputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929E1BFB066E29DE00218B60 /* AUInputElement.cpp */; };
 		4CC305810BD6DEBC008E97BD /* AUOutputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929E1BFD066E29DE00218B60 /* AUOutputElement.cpp */; };
@@ -46,7 +46,7 @@
 		4CC3058D0BD6DEBC008E97BD /* CAVectorUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A919E389088DC5A2008B8742 /* CAVectorUnit.cpp */; };
 		4CC3058E0BD6DEBC008E97BD /* CAAUMIDIMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A919E391088DC5BB008B8742 /* CAAUMIDIMap.cpp */; };
 		4CC3058F0BD6DEBC008E97BD /* CAAUMIDIMapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A919E393088DC5BB008B8742 /* CAAUMIDIMapManager.cpp */; };
-		4CC305910BD6DEBC008E97BD /* AUMuteNoteOn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305200BD6D936008E97BD /* AUMuteNoteOn.cpp */; };
+		4CC305910BD6DEBC008E97BD /* MuteNoteOn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305200BD6D936008E97BD /* MuteNoteOn.cpp */; };
 		4CC305930BD6DEBC008E97BD /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929067A9061260B00065C650 /* AudioUnit.framework */; };
 		4CC305940BD6DEBC008E97BD /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C53589061360CC00D90F41 /* CoreServices.framework */; };
 		4CC305950BD6DEBC008E97BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A919E53A088DCA5A008B8742 /* AudioToolbox.framework */; };
@@ -62,9 +62,9 @@
 /* Begin PBXFileReference section */
 		304FE91212C2B3C600DCE7DF /* AUPlugInDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUPlugInDispatch.cpp; sourceTree = "<group>"; };
 		304FE91312C2B3C600DCE7DF /* AUPlugInDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUPlugInDispatch.h; sourceTree = "<group>"; };
-		4CC305200BD6D936008E97BD /* AUMuteNoteOn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUMuteNoteOn.cpp; sourceTree = "<group>"; };
+		4CC305200BD6D936008E97BD /* MuteNoteOn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MuteNoteOn.cpp; sourceTree = "<group>"; };
 		4CC3055E0BD6DE8F008E97BD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
-		4CC3059D0BD6DEBC008E97BD /* AUMuteNoteOn.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AUMuteNoteOn.component; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CC3059D0BD6DEBC008E97BD /* MuteNoteOn.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuteNoteOn.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		593357D7107BBE9200693A4E /* AUMIDIDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMIDIDefs.h; sourceTree = "<group>"; };
 		9208748A081F0B79008E9964 /* AUInstrumentBase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = AUInstrumentBase.cpp; path = ../AUPublic/AUInstrumentBase/AUInstrumentBase.cpp; sourceTree = SOURCE_ROOT; };
 		9208748B081F0B79008E9964 /* AUInstrumentBase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AUInstrumentBase.h; sourceTree = "<group>"; };
@@ -110,9 +110,9 @@
 		A919E393088DC5BB008B8742 /* CAAUMIDIMapManager.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAAUMIDIMapManager.cpp; sourceTree = "<group>"; };
 		A919E394088DC5BB008B8742 /* CAAUMIDIMapManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAAUMIDIMapManager.h; sourceTree = "<group>"; };
 		A919E53A088DCA5A008B8742 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
-		A9223CD308A032F100341607 /* AUMuteNoteOn.exp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.exports; path = AUMuteNoteOn.exp; sourceTree = SOURCE_ROOT; };
-		A9223CD508A032F100341607 /* AUMuteNoteOnVersion.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AUMuteNoteOnVersion.h; sourceTree = SOURCE_ROOT; };
-		A9223CDA08A032FD00341607 /* AUMuteNoteOn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AUMuteNoteOn_Prefix.pch; sourceTree = "<group>"; };
+		A9223CD308A032F100341607 /* MuteNoteOn.exp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.exports; path = MuteNoteOn.exp; sourceTree = SOURCE_ROOT; };
+		A9223CD508A032F100341607 /* MuteNoteOnVersion.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MuteNoteOnVersion.h; sourceTree = SOURCE_ROOT; };
+		A9223CDA08A032FD00341607 /* MuteNoteOn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MuteNoteOn_Prefix.pch; sourceTree = "<group>"; };
 		B875955F17E3787100EFE623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F77C7D8F0E254E2F00EFE153 /* CABufferList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CABufferList.cpp; sourceTree = "<group>"; };
 		F77C7D900E254E2F00EFE153 /* CABufferList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABufferList.h; sourceTree = "<group>"; };
@@ -166,10 +166,10 @@
 		08FB77ADFE841716C02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A9223CDA08A032FD00341607 /* AUMuteNoteOn_Prefix.pch */,
-				4CC305200BD6D936008E97BD /* AUMuteNoteOn.cpp */,
-				A9223CD308A032F100341607 /* AUMuteNoteOn.exp */,
-				A9223CD508A032F100341607 /* AUMuteNoteOnVersion.h */,
+				A9223CDA08A032FD00341607 /* MuteNoteOn_Prefix.pch */,
+				4CC305200BD6D936008E97BD /* MuteNoteOn.cpp */,
+				A9223CD308A032F100341607 /* MuteNoteOn.exp */,
+				A9223CD508A032F100341607 /* MuteNoteOnVersion.h */,
 				929E1BF5066E29DE00218B60 /* AUPublic */,
 				929E1C53066E2A2200218B60 /* PublicUtility */,
 			);
@@ -179,7 +179,7 @@
 		19C28FB4FE9D528D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4CC3059D0BD6DEBC008E97BD /* AUMuteNoteOn.component */,
+				4CC3059D0BD6DEBC008E97BD /* MuteNoteOn.component */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,8 +305,8 @@
 				4CC305760BD6DEBC008E97BD /* CAVectorUnitTypes.h in Headers */,
 				4CC305770BD6DEBC008E97BD /* CAAUMIDIMap.h in Headers */,
 				4CC305780BD6DEBC008E97BD /* CAAUMIDIMapManager.h in Headers */,
-				4CC305790BD6DEBC008E97BD /* AUMuteNoteOnVersion.h in Headers */,
-				4CC3057A0BD6DEBC008E97BD /* AUMuteNoteOn_Prefix.pch in Headers */,
+				4CC305790BD6DEBC008E97BD /* MuteNoteOnVersion.h in Headers */,
+				4CC3057A0BD6DEBC008E97BD /* MuteNoteOn_Prefix.pch in Headers */,
 				A90305540D9B38B30041311E /* AUBaseHelper.h in Headers */,
 				B8FCCBD317DE554A00040F82 /* AUPlugInDispatch.h in Headers */,
 				F77C7D960E254E4E00EFE153 /* CABufferList.h in Headers */,
@@ -316,9 +316,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4CC305620BD6DEBC008E97BD /* AUMuteNoteOn */ = {
+		4CC305620BD6DEBC008E97BD /* MuteNoteOn */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "AUMuteNoteOn" */;
+			buildConfigurationList = 4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "MuteNoteOn" */;
 			buildPhases = (
 				4CC305630BD6DEBC008E97BD /* Headers */,
 				4CC3057C0BD6DEBC008E97BD /* Resources */,
@@ -330,10 +330,10 @@
 			);
 			dependencies = (
 			);
-			name = AUMuteNoteOn;
+			name = MuteNoteOn;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = AUAnalogSynth;
-			productReference = 4CC3059D0BD6DEBC008E97BD /* AUMuteNoteOn.component */;
+			productReference = 4CC3059D0BD6DEBC008E97BD /* MuteNoteOn.component */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -344,7 +344,7 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 			};
-			buildConfigurationList = A919E32C088DC18A008B8742 /* Build configuration list for PBXProject "AUMuteNoteOn" */;
+			buildConfigurationList = A919E32C088DC18A008B8742 /* Build configuration list for PBXProject "MuteNoteOn" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -358,7 +358,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4CC305620BD6DEBC008E97BD /* AUMuteNoteOn */,
+				4CC305620BD6DEBC008E97BD /* MuteNoteOn */,
 			);
 		};
 /* End PBXProject section */
@@ -406,7 +406,7 @@
 				4CC3058D0BD6DEBC008E97BD /* CAVectorUnit.cpp in Sources */,
 				4CC3058E0BD6DEBC008E97BD /* CAAUMIDIMap.cpp in Sources */,
 				4CC3058F0BD6DEBC008E97BD /* CAAUMIDIMapManager.cpp in Sources */,
-				4CC305910BD6DEBC008E97BD /* AUMuteNoteOn.cpp in Sources */,
+				4CC305910BD6DEBC008E97BD /* MuteNoteOn.cpp in Sources */,
 				A90305530D9B38B30041311E /* AUBaseHelper.cpp in Sources */,
 				F77C7D950E254E4E00EFE153 /* CABufferList.cpp in Sources */,
 			);
@@ -421,7 +421,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				EXPORTED_SYMBOLS_FILE = AUMuteNoteOn.exp;
+				EXPORTED_SYMBOLS_FILE = MuteNoteOn.exp;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -430,7 +430,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AUMuteNoteOn_Prefix.pch;
+				GCC_PREFIX_HEADER = MuteNoteOn_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "CA_USE_AUDIO_PLUGIN_ONLY=1";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -444,7 +444,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = AUMuteNoteOn;
+				PRODUCT_NAME = MuteNoteOn;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -471,7 +471,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				EXPORTED_SYMBOLS_FILE = AUMuteNoteOn.exp;
+				EXPORTED_SYMBOLS_FILE = MuteNoteOn.exp;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -480,7 +480,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AUMuteNoteOn_Prefix.pch;
+				GCC_PREFIX_HEADER = MuteNoteOn_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "CA_USE_AUDIO_PLUGIN_ONLY=1";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -491,7 +491,7 @@
 				OTHER_CFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = AUMuteNoteOn;
+				PRODUCT_NAME = MuteNoteOn;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -515,7 +515,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "AUMuteNoteOn" */ = {
+		4CC305990BD6DEBC008E97BD /* Build configuration list for PBXNativeTarget "MuteNoteOn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CC3059A0BD6DEBC008E97BD /* Development */,
@@ -524,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		A919E32C088DC18A008B8742 /* Build configuration list for PBXProject "AUMuteNoteOn" */ = {
+		A919E32C088DC18A008B8742 /* Build configuration list for PBXProject "MuteNoteOn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A919E32D088DC18A008B8742 /* Development */,
